@@ -1,0 +1,7 @@
+https://cloud.google.com/sql/docs/postgres/extensions
+
+citext: Provides a case-insensitive character string type citext.
+  I would want to use this extension because if I had a situation that requested a string where the case of the word does not matter, then this extension would be utilized.
+hstore: Implements the hstore data type for storing sets of key/value pairs within a single PostgreSQL value.
+  Setting a key/value pair into a single value is extremely convenient. Instead of creating a whole new table to operate a key/value system, you can utilize the hstore extension within one table.
+ 
