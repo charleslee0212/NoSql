@@ -1,0 +1,22 @@
+version: '2'
+volumes:
+  pgdata:
+services:
+  nosql-postgres:
+    build: .
+    image: "nosql-postgres"
+    container_name: "nosql-postgres"
+    hostname: "nosql-postgres"
+    tty: true
+    environment:
+      - PGDATA=/var/lib/postgresql/data/pgdata
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - pgdata:/var/lib/postgresql/data/pgdata
+      - ../../labs:/app/postgres/labs
+      - ../../projects:/app/postgres/projects
+      - ./examples:/app/postgres/examples
+      - ./lectures:/app/postgres/lectures
+    ports:
+      - 5432:5432
+    command: postgres -c 'config_file=/etc/postgresql/postgresql.conf'

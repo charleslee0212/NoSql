@@ -1,0 +1,3 @@
+The \? is a command that gives general information on psql and general help regarding psql in general. 
+The \h is a command that provides all the command that is able to run in psql. You can also used it with \h [name] (for example \h CREATE INDEX) in order to help on syntax of a sql command.
+
