@@ -1,0 +1,19 @@
+jruby-9.2.9.0 :002 > get 'foods', '58407030'
+COLUMN                             CELL
+ calories:                         timestamp=1587489328186, value=160.77000
+ name:                             timestamp=1587489328186, value=Ramen noodle soup
+ saturated fats:                   timestamp=1587489328186, value=2.70280
+
+Ramen noodle soup
+  calories: 160.77000
+  saturated fats: 2.70280
+
+jruby-9.2.9.0 :003 > get 'foods', '13110100'
+COLUMN                             CELL
+ calories:                         timestamp=1587489319445, value=267.33000
+ name:                             timestamp=1587489319445, value=Ice cream, regular
+ saturated fats:                   timestamp=1587489319445, value=9.03070
+
+Ice cream
+  calories: 267.33000
+  saturated fats: 9.03070 

@@ -1,0 +1,8 @@
+What should you use for the row key?
+  I was thinking the row key could be the Food_Code
+
+What column family options make sense for this data?
+  Calories, Saturated_Fats, and Display_Name
+
+Include the create statement in create_foods.txt
+  create 'foods', 'facts'

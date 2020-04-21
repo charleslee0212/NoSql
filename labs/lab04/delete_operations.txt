@@ -1,0 +1,7 @@
+In order to delete the value of a specific column you can just update the specific row with an empty value.
+ie.
+hbase> put '<table name>', '<row>', '<column name>', ''
+
+In order to delete the entire row you can utilize the delete command specifying the row with the addition of the time stamp
+ie.
+hbase>delete ‘<table name>’, ‘<row>’, ‘<column name >’, ‘<time stamp>’ 
