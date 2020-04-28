@@ -1,0 +1,5 @@
+When the db.collection.find () function is used to search for documents in the collection, the result returns a pointer to the collection of documents returned which is called a cursor.
+By default, the cursor will be iterated automatically when the result of the query is returned. But one can also explicitly go through the items returned in the cursor one by one. If you see the below example, if we have 3 documents in our collection, the cursor object will point to the first document and then iterate through all of the documents of the collection.
+
+
+https://www.guru99.com/mongodb-cursor.html

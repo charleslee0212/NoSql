@@ -1,0 +1,63 @@
+version: '2'
+volumes:
+  nosql-node:
+  nosql-mongodata-27011:
+  nosql-mongodata-27012:
+  nosql-mongodata-27013:
+services:
+  nosql-node-replication:
+    build: .
+    image: "nosql-node-replication"
+    container_name: "nosql-node-replication"
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ../../labs:/app/mongodb/labs
+      - ./examples:/app/mongodb/examples
+      - ./lectures:/app/mongodb/lectures
+      - nosql-node:/app/mongodb/node
+    ports:
+      - 3000:3000
+      - 3001:3001
+      - 3002:3002
+      - 9000:9000
+    networks:
+      - replication
+  nosql-mongodb-27011:
+    image: mongo:3
+    container_name: "nosql-mongodb-27011"
+    environment:
+      - MONGO_DATA_DIR=/data/db
+    volumes:
+      - nosql-mongodata-27011:/data/db
+    ports:
+      - 27011:27011
+    networks:
+      - replication
+    command: mongod --bind_ip 0.0.0.0 --smallfiles --replSet book --port 27011
+  nosql-mongodb-27012:
+    image: mongo:3
+    container_name: "nosql-mongodb-27012"
+    environment:
+      - MONGO_DATA_DIR=/data/db
+    volumes:
+      - nosql-mongodata-27012:/data/db
+    ports:
+      - 27012:27012
+    networks:
+      - replication
+    command: mongod --bind_ip 0.0.0.0 --smallfiles --replSet book --port 27012
+  nosql-mongodb-27013:
+    image: mongo:3
+    container_name: "nosql-mongodb-27013"
+    environment:
+      - MONGO_DATA_DIR=/data/db
+    volumes:
+      - nosql-mongodata-27013:/data/db
+    ports:
+      - 27013:27013
+    networks:
+      - replication
+    command: mongod --bind_ip 0.0.0.0 --smallfiles --replSet book --port 27013
+networks:
+  replication:

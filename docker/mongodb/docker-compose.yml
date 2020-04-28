@@ -1,0 +1,38 @@
+version: '2'
+volumes:
+  nosql-mongodata:
+  nosql-node-projects:
+  nosql-node-lectures:
+services:
+  nosql-node:
+    build: .
+    image: "nosql-node"
+    container_name: "nosql-node"
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ../../labs:/app/mongodb/labs
+      - ../../projects:/app/mongodb/projects
+      - nosql-node-projects:/app/mongodb/projects/node_modules
+      - ./examples:/app/mongodb/examples
+      - ./lectures:/app/mongodb/lectures
+      - nosql-node-lectures:/app/mongodb/lectures/node_modules
+    ports:
+      - 3000:3000
+      - 3001:3001
+      - 3002:3002
+      - 9000:9000
+    links:
+      - nosql-mongodb
+    depends_on:
+      - nosql-mongodb
+  nosql-mongodb:
+    image: mongo:3
+    container_name: "nosql-mongodb"
+    environment:
+      - MONGO_DATA_DIR=/data/db
+    volumes:
+      - nosql-mongodata:/data/db
+    ports:
+      - 27017:27017
+    command: mongod --bind_ip 0.0.0.0 --smallfiles

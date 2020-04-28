@@ -1,0 +1,76 @@
+version: '2'
+volumes:
+  nosql-node:
+  nosql-mongodata-27014:
+  nosql-mongodata-27015:
+  nosql-mongodata-27016:
+  nosql-mongodata-27020:
+services:
+  nosql-node-sharding:
+    build: .
+    image: "nosql-node-sharding"
+    container_name: "nosql-node-sharding"
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ../../labs:/app/mongodb/labs
+      - ./examples:/app/mongodb/examples
+      - ./lectures:/app/mongodb/lectures
+      - nosql-node:/app/mongodb/node
+    ports:
+      - 3000:3000
+      - 3001:3001
+      - 3002:3002
+      - 9000:9000
+    networks:
+      - sharding
+  nosql-mongodb-27014:
+    image: mongo:3
+    container_name: "nosql-mongodb-27014"
+    environment:
+      - MONGO_DATA_DIR=/data/db
+    volumes:
+      - nosql-mongodata-27014:/data/db
+    ports:
+      - 27014:27014
+    networks:
+      - sharding
+    command: mongod --bind_ip 0.0.0.0 --smallfiles --shardsvr --port 27014
+  nosql-mongodb-27015:
+    image: mongo:3
+    container_name: "nosql-mongodb-27015"
+    environment:
+      - MONGO_DATA_DIR=/data/db
+    volumes:
+      - nosql-mongodata-27015:/data/db
+    ports:
+      - 27015:27015
+    networks:
+      - sharding
+    command: mongod --bind_ip 0.0.0.0 --smallfiles --shardsvr --port 27015
+  nosql-mongodb-27016:
+    image: mongo:3
+    container_name: "nosql-mongodb-27016"
+    environment:
+      - MONGO_DATA_DIR=/data/db
+    volumes:
+      - nosql-mongodata-27016:/data/db
+    ports:
+      - 27016:27016
+    networks:
+      - sharding
+    command: mongod --bind_ip 0.0.0.0 --smallfiles --configsvr --replSet configSet --port 27016
+  nosql-mongodb-27020:
+    image: mongo:3
+    container_name: "nosql-mongodb-27020"
+    environment:
+      - MONGO_DATA_DIR=/data/db
+    volumes:
+      - nosql-mongodata-27020:/data/db
+    ports:
+      - 27020:27020
+    networks:
+      - sharding
+    command: mongos --bind_ip 0.0.0.0 --configdb configSet/nosql-mongodb-27016:27016 --port 27020
+networks:
+  sharding:
