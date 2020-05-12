@@ -1,0 +1,8 @@
+Create
+curl -u admin:admin -i -XPUT "${COUCH_ROOT_URL}/batman/background_info"
+
+PUT
+curl -u admin:admin -i -XPUT "${COUCH_ROOT_URL}/batman/background_info/batman.txt?rev=1-54cc3bc96e5197211c80c8bc2da6112e" -d@batman.txt -H "Content-Type: application/txt"
+
+GET
+curl -u admin:admin -i -XGET "${COUCH_ROOT_URL}/batman/background_info/batman.txt"

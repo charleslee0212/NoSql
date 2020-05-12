@@ -1,0 +1,1 @@
+curl -u admin:admin -i -XPUT "${COUCH_ROOT_URL}/music/JOKER" -H "Content-Type: application/json" -d '{    "name": "Joker",    "victims": ["Jason Todd", "Barbra Gordon", "Lois Lane"]}'
