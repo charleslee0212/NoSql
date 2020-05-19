@@ -1,0 +1,7 @@
+1. We’ve seen that the emit() method can output keys that are strings. What other types of values does it support?
+
+The keys can be any JSON object for example (string, number, object, array, boolean or null).
+
+2. What happens when you emit an array of values as a key?
+
+It will emit a key of an array and a value matching the key. Arrays can be used with reduce functions to provide query time custom grouping.

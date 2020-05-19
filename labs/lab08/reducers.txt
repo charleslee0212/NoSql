@@ -1,0 +1,12 @@
+1. What native reducers are available in CouchDB?
+
+_sum
+sums the values by key.
+_count
+counts the number of values
+_stat
+computes additional statistics (minimum, maximum, …)
+
+2. What are the benefits of using native reducers over custom JavaScript reducers?
+
+Because they are directly implemented in Erlang, they have a better performance than JS
