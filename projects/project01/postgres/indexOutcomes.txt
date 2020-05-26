@@ -1,0 +1,16 @@
+WITHOUT INDEX:
+50,000 orders -----> 00:53.73
+100,000 orders -----> 02:54.36
+
+//INDEX CREATION: included extra index creation because these fields were referenced many times.
+CREATE INDEX recipe_name ON recipes (name);
+CREATE INDEX ingredient_info ON ingredients (name_inv, amount);
+CREATE INDEX user_email ON users (email_address);
+
+WITH INDEX
+50,000 orders -----> 00:35.78
+100,000 orders -----> 02:09:25
+
+Although the the creation of index decreased the runtime of adding orders, the add_order() function utilizes the join
+capabilities of psql which cannot be indexed (rather we can initialize the join table as a new table then the indexing is
+possible). The creation of an index for the INNER JOIN tables will improve the runtime. 

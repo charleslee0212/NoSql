@@ -1,0 +1,54 @@
+$ createdb bobPizza
+$ psql bobPizza
+
+
+//users Table CREATE
+
+CREATE TABLE users(
+email_address text NOT NULL,
+first_name text NOT NULL,
+last_name text NOT NULL,
+phone_num text NOT NULL,
+address_line1 text NOT NULL,
+address_line2 text,
+city text NOT NULL,
+state text NOT NULL,
+zip text NOT NULL,
+PRIMARY KEY (email_address),
+constraint unique1 unique (phone_num));
+
+//inventory TABLE CREATE
+
+CREATE TABLE inventory(
+name text NOT NULL,
+description text NOT NULL,
+quantity int NOT NULL,
+PRIMARY KEY (name));
+
+//recipes TABLE CREATE
+
+CREATE TABLE recipes(
+name text NOT NULL,
+description text NOT NULL,
+instructions text NOT NULL,
+PRIMARY KEY (name));
+
+//ingredient TABLE CREATE
+
+CREATE TABLE ingredients(
+name_food text NOT NULL,
+name_inv text NOT NULL,
+FOREIGN KEY (name_food) REFERENCES recipes (name),
+FOREIGN KEY (name_inv) REFERENCES inventory (name),
+amount int NOT NULL);
+
+//orders TABLE CREATE
+
+CREATE TABLE orders(
+id serial,
+user_name text NOT NULL,
+timestamp TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+recipe text NOT NULL,
+PRIMARY KEY (id),
+FOREIGN KEY (user_name) REFERENCES users (email_address),
+FOREIGN KEY (recipe) REFERENCES recipes (name));

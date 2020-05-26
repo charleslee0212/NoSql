@@ -1,0 +1,35 @@
+After using both mongodb and postgres, I have learned many great and frustrating things about each database.
+Implementing postgres was really simple. All I had to consider was the schema of each table and their relationship
+with one another. Because postgres requires a specified insert, setting up the database was relatively easy.
+However, when it came down to the ingredients it was more complicated. The ingredients of a recipe requires a list
+of ingredients that are already defined in the inventory table. Postgres does not support an array of foreign keys.
+Because postgres is a relational database, you can fix this problem by dedicating an entire table to define a relationship.
+Creating a table called ingredients that referenced both primary keys from recipes and inventory tables, allows recipes
+to have many ingredients that are also foreign keys by utilizing the INNER JOIN function. The runtime of postgres was impressive.
+Running 50,000 orders to the database took less than a minute and the a 100,000 orders took about 2 minutes. Postgres strictly
+follows the schema it was provided ensuring initial intentions for the database.
+
+Implementing mongodb was a little difficult compared to postgres. Because mongodb does not require a schema. The initial creation
+of collections required a little more work. However the creation of each collection after the initial creation was simple. It was
+convenient that there were no restriction on keys and no required structure. implementing the ingredients portion of the recipes
+collection was simple to integrate. I utilized nesting as a means to store all the ingredients in an array. Implementing the
+add_order function was more convenient because I am already familiar with JavaScript. Implementing the add_order in postgres
+was really frustrating because of my lack of familiarity with plpgsql. The downside of mongodb is that there is no integrity
+of the data inserted to the database. The integrity of the data must be handled in the client side. The difficult thing about
+mongo was generating a mock data for recipes and ensure that it has ingredients that are also in the inventory. Without the
+relationship between the recipes and inventory I must manually ensure the correct insertion. There is also a case for the users
+because there is a relationship between orders and users. Mongodb's insertion of data however was significantly faster than
+the postgres. Large inserts like 1000 users were relatively faster.
+
+After utilizing both database, I would have to say that postgres is more of a fit as a database for Bob's pizza. Because Bob's
+pizza requires relationship between the tables, postgres seems more of an attractive choice. One of mongodb's main strength is
+the ability to partition data. However assuming Bob's pizza is an independent restaurant partition of data don't seem necessary
+in this scenario. The data Bob's pizza would receive seems to be relatively small and because postgres allows relationships and
+restrictions against inserts, I would have too say postgres is the better database for this case. Also the runtime of committing
+50,000(and even 100,000 orders to the database seems faster.
+
+
+EXTRA WORK:
+I have utilized mock data that realistically represents a pizza place. From real products from a grocery store to names of pizza.
+Generating these mock data took a lot of effort, I don't know if this would be considered 'something awesome beyond' but I thought
+it wouldn't hurt to write this here.

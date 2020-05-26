@@ -1,0 +1,29 @@
+mongo --host nosql-mongodb bobPizza
+
+//user COLLECTION
+
+db.users.insert({
+email_address: 'bob@email.com',
+first_name: 'bob',
+last_name: 'johnson',
+phone_number: '303-555-5555',
+address_line1: '9985 S Bronti Cir',
+address_line2: '',
+city: 'Lone Tree',
+state: 'CO',
+zip: 80124})
+
+//inventory COLLECTION
+
+db.inventory.insert({
+name: 'cheese',
+description: 'a dairy product, derived from milk and produced in a wide range of flavors, textures and forms by coagulation of the milk protein casein.',
+quantity: 100})
+
+//recipes COLLECTION
+
+db.recipes.insert({
+name: 'cheese pizza',
+description: ' A simple recipe for extra cheese pizza on top of the best homemade pizza dough. Makes one 12-inch pizza or you can make two pizzas from my entire crust recipe and double the toppings listed below.',
+instructions: 'Prepare the pizza dough through step 6, including preheating the oven to 475°F (246°C) as described in step 4. Top the dough with the pizza sauce, then the sliced mozzarella, then the shredded mozzarella, grated Parmesan, then sprinkle with basil. Bake for 12-15 minutes. For the last minute, I move the oven rack to the top rack to really brown the edges. That’s optional. Slice hot pizza and serve immediately. Cover leftover pizza tightly and store in the refrigerator. Reheat as you prefer. Baked pizza slices can be frozen up to 3 months.'
+ingredients: [['cheese', 5], ['flour', 1], ['pizza dough', 1], ['tomato sauce']]})

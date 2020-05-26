@@ -1,0 +1,15 @@
+WITHOUT INDEX:
+50,000 -----> TIME: 2080711 milliseconds
+
+INDEX CREATION:
+db.recipes.ensureIndex({name:1},{unique:true, dropDups:true})
+db.recipes.ensureIndex({ingredients:1},{})
+db.inventory.ensureIndex({quantity:1},{})
+
+WITH INDEX:
+50,000 -----> TIME: 1646817 milliseconds
+
+The results differ from the postgres outcomes. Not only does postgres run faster, but the difference between the without index and
+with index is also greater. It is strange how mongodb takes more time to operate the add_order function. I am assuming it has to
+do with the lack of relational ability. Postgers has a separate table for the ingredients allowing index to be created to that specific
+table maybe explaining the runtime difference. Also the runtime differs only 3 minutes which is not that significant. 
