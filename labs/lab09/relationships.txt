@@ -1,0 +1,8 @@
+CREATE(m: ME{name:"Charles", age:"21", dog:"Sani"})
+CREATE(p: PERSON{name:"Dana", age:"22", dog:"N/A"})
+CREATE(p: PERSON{name:"Dohi", age:"22", dog:"N/A"})
+
+MATCH (m: ME{name: "Charles"}), (p: PERSON{}) CREATE (p)-[f: friends]->(m)
+MATCH (p1: PERSON{name: "Dohi"}), (p2: PERSON{name: "Dana"}) CREATE (p1)-[tf: thinks_theyre_friends]->(p2)
+MATCH (p1: PERSON{name: "Dana"}), (p2: PERSON{name: "Dohi"}) CREATE (p1)-[nf: not_friends]->(p2)
+MATCH (m: ME{name: "Charles"}), (p: PERSON{}) CREATE (p)<-[dk: dont_know]-(m)

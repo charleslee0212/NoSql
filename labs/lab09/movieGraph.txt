@@ -1,0 +1,33 @@
+The Movie Graph
+
+STEP 1:
+
+Create
+To the right is a giant code block containing a single Cypher query statement composed of multiple CREATE clauses.
+This will create the movie graph
+
+STEP 2:
+
+Find
+Example queries for finding individual nodes.
+
+STEP 3:
+
+Query
+Finding patterns within the graph.
+
+STEP 4:
+
+Solve
+You've heard of the classic "Six Degrees of Kevin Bacon"? That is simply a shortest path query called the "Bacon Path".
+
+STEP 5:
+
+Recommend
+Let's recommend new co-actors for Tom Hanks.
+A basic recommendation approach is to find connections past an immediate neighborhood which are themselves well connected.
+
+STEP 6:
+
+Clean up
+When you're done experimenting, you can remove the movie data set.

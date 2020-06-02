@@ -1,0 +1,5 @@
+My favorite cypher feature was the FOREACH feature. It is really cool that you can iterate over all the relationships one
+node has.
+
+FOREACH:
+Update data in an iteration.
