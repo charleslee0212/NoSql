@@ -1,0 +1,25 @@
+postgres:
+Implementing this data set in postgres was really complicated and tedious. Because Postgres does not allow multiple foreign keys,
+I had to implement three separate tables to store all the doctors the patients are seeing, the treatment they're on, and the
+illnesses they have. Querying all of the patients information is not possible through one clean table. Postgres prefers the user
+to individually query each information separately in order to show a readable table. Creation of the schema also is a very attractive
+feature of this database to me. Because it allows structure and restriction on the input of users the schema allowed me to have a
+better understanding of what data is required for each table. Unlike neo4j, postgres has a function creation which I utilized to create
+the relationship tables accounting for the patients sees 1-5 doctors, 0-3 different illnesses, and 35% chance a doctor is a patient.
+
+neo4j:
+Implementing this data set in neo4j was relatively simple and easy to create. There was no requirement of a three separate tables to
+represent the relationships, rather you can directly create relationships between each node making this whole process easier. Unlike
+postgres, the user can query all the information of a specified patient in one line of Cypher code. The query search is so much easier
+to understand and was more convenient than querying from postgres. Because this data set heavily relied on relationships between the
+patients and their information, neo4j easily implemented this data set. Even though neo4j does not have any form of function creation,
+there was a very convenient way to transfer all of the data from postgres to neo4j. I converted the queries from postgres into a csv file
+and had neo4j read in all the information creating nodes and relationship between those nodes. The convenience really surprised me. neo4j
+also allowed restriction some data inputs. If I tried to link one node with another node that does not exist it will not create that
+relationship. For example if I wanted to link a patient with a doctor that does not exist in the doctor label than it will not create that
+relationship. This allowed me to make sure the doctors, treatments, and illnesses that the patient is under actually existed in my database.
+I can easily say that neo4j is the more superior database for this particular data set.
+
+neo4j is the database that is right for this data set. Because the dataset utilizes patients with many relationships, neo4j is the preferred
+option. Queries and data inserts are very simple to implement, and neo4j can answer questions regarding the data set with relative ease. Unlike
+postgres where I must query from two tables and joining them on a common value, neo4j has a patient linked to all of its information.      

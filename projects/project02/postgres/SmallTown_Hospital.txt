@@ -1,0 +1,65 @@
+createdb SmallTown_Hospital
+psql SmallTown_Hospital
+
+//doctors Table CREATE
+
+CREATE TABLE doctors(
+id serial,
+first_name text NOT NULL,
+last_name text NOT NULL,
+PRIMARY KEY (id));
+
+//patients Table CREATE
+
+CREATE TABLE patients(
+id serial,
+first_name text NOT NULL,
+last_name text NOT NULL,
+PRIMARY KEY (id));
+
+//illnesses Table CREATE
+
+CREATE TABLE illnesses(
+id serial,
+name text NOT NULL UNIQUE,
+PRIMARY KEY(id));
+
+//treatments Table CREATE
+
+CREATE TABLE treatments(
+id serial,
+name text NOT NULL UNIQUE,
+PRIMARY KEY(id));
+
+//appointments Table CREATE
+
+CREATE TABLE appointments(
+doctor_id integer NOT NULL,
+patient_id integer,
+pat_doc_id integer,
+FOREIGN KEY (doctor_id) REFERENCES doctors(id),
+FOREIGN KEY (patient_id) REFERENCES patients(id),
+FOREIGN KEY (pat_doc_id) REFERENCES doctors(id),
+check ((patient_id IS NULL) <> (pat_doc_id IS NULL)));
+
+//treatment_plans Table CREATE
+
+CREATE TABLE treatment_plans(
+treatment_id integer NOT NULL,
+patient_id integer,
+pat_doc_id integer,
+FOREIGN KEY (treatment_id) REFERENCES treatments(id),
+FOREIGN KEY (patient_id) REFERENCES patients(id),
+FOREIGN KEY (pat_doc_id) REFERENCES doctors(id),
+check ((patient_id IS NULL) <> (pat_doc_id IS NULL)));
+
+//diagnoses Table CREATE
+
+CREATE TABLE diagnoses(
+illness_id integer NOT NULL,
+patient_id integer,
+pat_doc_id integer,
+FOREIGN KEY (illness_id) REFERENCES illnesses(id),
+FOREIGN KEY (patient_id) REFERENCES patients(id),
+FOREIGN KEY (pat_doc_id) REFERENCES doctors(id),
+check ((patient_id IS NULL) <> (pat_doc_id IS NULL)));

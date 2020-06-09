@@ -1,0 +1,17 @@
+version: '2'
+volumes:
+  redisdata:
+services:
+  nosql-redis:
+    build: .
+    image: "nosql-redis"
+    container_name: "nosql-redis"
+    hostname: "nosql-redis"
+    tty: true
+    volumes:
+      - redisdata:/data
+      - ../../labs:/app/redis/labs
+      - ../../projects:/app/redis/projects
+    ports:
+      - 6379:6379
+    command: redis-server /usr/local/etc/redis/redis.conf

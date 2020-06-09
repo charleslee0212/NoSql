@@ -1,0 +1,28 @@
+postgres:
+When trying to query a patient and all his/her doctors, illnesses, and treatments, although it is possible to do it in one
+query, the best way is to do them all separately. Doing them in one query will result in many repeats of data because sql
+formats their query as a table causing confusion while reading the output. Each row needs to relate with each table specified
+in the query. Therefore the best way to query them is to do it separately.
+
+//query for Doctors for patient id: 2
+SELECT first_name, last_name
+FROM appointments a, doctors d
+WHERE a.doctor_id = d.id AND patient_id = 2;
+
+//query for illnesses for patient id: 2
+SELECT name
+FROM diagnoses d, illnesses i
+WHERE d.illness_id = i.id AND patient_id = 2;
+
+//query for treatment for patient id: 2
+SELECT name
+FROM treatment_plans tp, treatments t
+WHERE tp.treatment_id = t.id AND patient_id = 2;
+
+neo4j:
+When trying to query a patient and all his/her doctors, illnesses, and treatments, neo4j handles this query very effectively.
+Because neo4j has a relationship edge pointing at nodes, it is relatively easier to query the patients information. All you
+need to ask is return a specific patient and all of his/her relationships providing all the information in one query.
+
+//query for patient id: 163
+MATCH (p:patient) WHERE id(p) = 163 RETURN (p)-[]->()

@@ -1,0 +1,13 @@
+SELECT name
+FROM (SELECT *
+      FROM illnesses
+      INNER JOIN diagnoses
+      ON illness_id = id) AS illness
+WHERE patient_id = 2;
+
+SELECT name
+FROM (SELECT *
+      FROM treatments
+      INNER JOIN treatment_plans
+      ON treatment_id = id) AS treatment
+WHERE patient_id = 2;

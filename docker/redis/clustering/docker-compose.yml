@@ -1,0 +1,37 @@
+version: '2'
+volumes:
+  redisdata-cluster1:
+  redisdata-cluster2:
+services:
+  nosql-redis-cluster1:
+    build: .
+    image: "nosql-redis-cluster1"
+    container_name: "nosql-redis-cluster1"
+    hostname: "nosql-redis-cluster1"
+    tty: true
+    volumes:
+      - redisdata-cluster1:/data
+      - ../../../labs:/app/redis/labs
+      - ../../../projects:/app/redis/projects
+    ports:
+      - 6379:6379
+    command: redis-server /usr/local/etc/redis/redis.conf --port 6379
+    networks:
+      - redis-cluster
+  nosql-redis-cluster2:
+    build: .
+    image: "nosql-redis-cluster2"
+    container_name: "nosql-redis-cluster2"
+    hostname: "nosql-redis-cluster2"
+    tty: true
+    volumes:
+      - redisdata-cluster2:/data
+      - ../../labs:/app/redis/labs
+      - ../../projects:/app/redis/projects
+    ports:
+      - 6380:6380
+    command: redis-server /usr/local/etc/redis/redis.conf --port 6380
+    networks:
+      - redis-cluster
+networks:
+  redis-cluster:
